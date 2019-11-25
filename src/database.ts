@@ -1,12 +1,17 @@
 import mongoose from 'mongoose';
 
-async function connect(){
-    try
-    {
-        mongoose.connect('mongoddb://localhost/ts-app-tutorial');  
-    } 
-    catch (error) 
-    {
-        
-    }
+const uri : string = 'mongodb://127.0.0.1:27017/local';
+ async function connect(){
+  await mongoose.connect(uri,{useNewUrlParser : true}, (err: any)=>{
+        if(err){
+            console.log(err.message);
+            
+        }
+        else{
+            console.log("SuccessFully Conntected");
+            
+        }
+    })  
 }
+
+export default connect;
